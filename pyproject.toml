@@ -29,6 +29,8 @@ ruff = "^0.9.0"
 flake8 = "^7.0"
 pytest = "^8.3"
 pytest-asyncio = "^1.3.0"
+pytest-cov = "^6.0"
+python-dotenv = "^1.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -62,9 +64,19 @@ init-hook = "import sys; sys.path.insert(0, 'app')"
 asyncio_mode = "auto"
 pythonpath = ["app"]
 testpaths = ["tests"]
+markers = [
+    "e2e: offline full-dispatcher tests (fake Telegram API, no network)",
+]
 filterwarnings = [
     "ignore::DeprecationWarning:fluent_compiler.codegen",
 ]
+
+[tool.coverage.run]
+branch = true
+source = ["app/src"]
+
+[tool.coverage.report]
+skip_empty = true
 
 [tool.ruff]
 target-version = "py312"

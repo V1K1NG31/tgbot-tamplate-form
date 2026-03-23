@@ -1,15 +1,17 @@
 """Shared pytest fixtures."""
 
-import os
-
-# Required before importing any module that loads ``src.core.config``.
-os.environ.setdefault("BOT_TOKEN", "pytest-dummy-token")
-os.environ.setdefault("ADMIN_CHAT_ID", "-1")
+from __future__ import annotations
 
 import pytest
 from fluentogram import TranslatorHub, TranslatorRunner
 
+import tests._bootstrap_env  # noqa: F401  # side effect: load .env.test*
 from src.core.fluent import create_translator_hub
+
+
+def pytest_configure(config: pytest.Config) -> None:
+    """Reserved for future pytest-wide hooks."""
+    _ = config
 
 
 @pytest.fixture
