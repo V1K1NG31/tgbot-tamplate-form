@@ -1,0 +1,24 @@
+name: tgbot-template-form
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+  bot:
+    image: tgbot-template-form:latest
+    build: .
+    restart: unless-stopped
+    # Pass vars via .env: docker compose --env-file .env up
+    environment:
+      - BOT_TOKEN
+      - ADMIN_IDS
+      - ADMIN_CHAT_ID
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
