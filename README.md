@@ -13,9 +13,11 @@ Longer summary: [docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md).
 
 ## Requirements
 
-- Python **3.12+**
+- Python **3.12–3.14** (aiogram currently declares `python <3.15`)
 - **Redis** (local or remote URL)
 - A Telegram **bot token** from [@BotFather](https://t.me/BotFather)
+
+After pulling dependency updates, run `poetry lock` (if the lockfile changed) and `poetry install` so `pydantic-core` and `aiohttp` match your interpreter (prebuilt wheels exist for 3.12–3.14).
 
 ## Configuration
 
@@ -49,6 +51,8 @@ PYTHONPATH=app poetry run pytest
 ```
 
 `tests/conftest.py` sets dummy `BOT_TOKEN` and `ADMIN_CHAT_ID` so importing handlers does not require a real `.env`.
+
+If you see `ModuleNotFoundError: No module named 'pydantic_core'`, the environment is incomplete: run `poetry install` from the project root (or recreate the venv). On **Python 3.14**, use the lockfile versions in this repo (`pydantic` 2.12.x + `aiohttp` 3.13.x) so wheels install instead of failed local builds.
 
 ## Docker
 

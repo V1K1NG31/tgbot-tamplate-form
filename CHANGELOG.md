@@ -1,9 +1,9 @@
 # Changelog
 
-User-visible changes for bot operators and template users.  
+User-visible changes for bot operators and template users.
 Internal-only refactors are omitted.
 
-Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).  
+Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Latest release at the **top**.
 
 ## [Unreleased]
@@ -17,6 +17,7 @@ Move items here while developing; cut a dated release when you publish.
 
 ### Changed
 
+- Dependencies for **Python 3.14**: `aiogram` ≥3.26, `pydantic` 2.12.x (with `pydantic-core` wheels), `aiohttp` 3.13.x (wheels for 3.14). Declared `requires-python` as `>=3.12,<3.15` (matches aiogram).
 - Demo copy and menu labels: fictional brand “Svetlitsa”, no bankruptcy niche.
 - Package and Docker artifacts: `tgbot-template-form` instead of `bfl`; compose service `bot`.
 - **English-only UI:** default locale `en`, strings in `app/locales/en.ftl`; code comments and docs in English.
